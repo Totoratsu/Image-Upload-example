@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 
 const router = express.Router();
 
-// Saves the image localy
+// Saves the image locally
 router.post('/img', (req, res) => {
     return res.jsonp({ statusText: 'done' });
 });
