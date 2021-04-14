@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "app.js",
   "license": "MIT",
+  "author": "Totoratsu",
   "scripts": {
     "start": "node app.js"
   },
+  "repository": "https://github.com/Totoratsu/QuectelEC25-test",
   "dependencies": {
     "cloudinary": "^1.25.1",
     "dotenv": "^8.2.0",

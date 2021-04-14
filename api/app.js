@@ -3,17 +3,17 @@ const multer = require('multer');
 const path = require('path');
 const cloudinary = require('cloudinary');
 const dotenv = require('dotenv');
-const fs = require('fs-extra');
+
+const routes = require('./routes');
 
 const app = express();
-const router = express.Router();
 
 const {
     PORT = 3000,
     NODE_ENV = 'dev'
 } = process.env;
 
-if(NODE_ENV==='dev')
+if (NODE_ENV === 'dev')
     dotenv.config();
 
 // Multer Config
@@ -34,23 +34,7 @@ cloudinary.v2.config({
     api_secret: process.env.IMG_API_SECRET
 });
 
-// Routes
-router.post('/img', async (req, res) => {
-    try {
-        //await cloudinary.v2.uploader.destroy('input.PNG');
-
-        const result = await cloudinary.v2.uploader.upload(req.file.path);
-
-        await fs.unlink(req.file.path);
-
-        return res.json({ statusText: 'done', url: result.url });
-    }
-    catch (err) {
-        return res.json({ err }).status(err.http_code);
-    }
-});
-
-app.use('/', router);
+app.use('/', routes);
 
 app.listen(PORT, () => {
     console.log(`Server Running on port ${PORT}`);
